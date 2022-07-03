@@ -1,3 +1,5 @@
+package src;
+
 import java.util.Scanner; //input
 import java.util.ArrayList; //array
 
