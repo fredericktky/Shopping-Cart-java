@@ -39,7 +39,7 @@ public class testExample {
 
                     promo = true;
                     System.out.println("Promo code valid");
-                } 
+                }
                 System.out.println("SHOPPING CART SUMMARY" +
                         "\nItem bought:" + itemsList +
                         "\nItem price:RM" + itemsPrice +
