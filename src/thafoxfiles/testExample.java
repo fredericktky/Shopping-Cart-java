@@ -85,10 +85,16 @@ public class testExample {
         System.out.println("Quantity"); //Get input of item quantity, add to array
         itemsQuantity.add(scanner.nextInt());
 
-        //arraylist.get() means get the index , -1 means last one
-        double totalItemPrice = itemsPrice.get(-1) * itemsQuantity.get(-1); //Calculate total item price
+        double totalItemPrice;
+        if(itemsList.size() != 0) {
+            //arraylist.get() means get the index , size - 1 means get the last element
+            totalItemPrice = itemsPrice.get(itemsPrice.size() -1) * itemsQuantity.get(itemsQuantity.size() -1); //Calculate total item price
+
+        }else{
+            totalItemPrice = itemsPrice.get(0) * itemsQuantity.get(0); //Calculate total item price
+        }
         totalCost = totalCost + totalItemPrice;
-        System.out.println(itemsList.get(-1) + ":" + totalItemPrice);
+        System.out.println(itemsList.get(itemsPrice.size() -1) + " : " + totalItemPrice);
         return totalCost;
     }
 }
