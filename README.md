@@ -1,6 +1,6 @@
 # Shopping-Cart-java
 
-##Shopping Cart Java made for learning purposes
+## Shopping Cart Java made for learning purposes
 
 Used to learn java and programming concepts
 
