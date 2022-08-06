@@ -1,8 +1,13 @@
+import java.lang.reflect.Array;
 import java.util.Scanner; //input
 import java.util.ArrayList; //array
 
 
 public class main {
+    static ArrayList<String> itemsList = new ArrayList<>();
+    static ArrayList<Double> itemsPrice = new ArrayList<>();
+    static ArrayList<Integer> itemsQuantity = new ArrayList<>();
+    static double price;
     public static void main (String[] args) {
         Scanner scanner= new Scanner(System.in);
 
@@ -13,7 +18,7 @@ public class main {
         boolean promo;
         String promoCode= "P10";
         double promoDiscount= 10.0;
-        double price;
+
 
         //items
         String item1 = "Cake";
@@ -23,9 +28,6 @@ public class main {
         String item3 = "Kaya";
         double priceitem3 = 1.5;
 
-        ArrayList<String> itemsList = new ArrayList<>();
-        ArrayList<Double> itemsPrice = new ArrayList<>();
-        ArrayList<Integer> itemsQuantity = new ArrayList<>();
 
         System.out.println("Welcome to Shopping Cart Calculator");
         System.out.println("Item: Cake RM3 , Bread RM2, Kaya RM1.5");
@@ -37,19 +39,13 @@ public class main {
                 System.out.println("Input name");
                 String itemname = scanner.next();
                 if (itemname.equals(item1)) {
-                    itemsList.add(item1);
-                    itemsPrice.add(priceitem1);
-                    price = priceitem1;
+                    addcart(item1,priceitem1);
                 }
                 else if (itemname.equals(item2)) {
-                    itemsList.add(item2);
-                    itemsPrice.add(priceitem2);
-                    price = priceitem2;
+                    addcart(item2,priceitem2);
                 }
                 else if (itemname.equals(item3)) {
-                    itemsList.add(item3);
-                    itemsPrice.add(priceitem3);
-                    price = priceitem3;
+                    addcart(item3,priceitem3);
                 }
                 else {
                     System.out.println("Please insert valid selection");
@@ -97,5 +93,10 @@ public class main {
             else{
                 System.out.println("Please enter valid selection");}
         }
+    }
+    public static void addcart(String itemname, double itemprice){
+        itemsList.add(itemname);
+        itemsPrice.add(itemprice);
+        price = itemprice;
     }
 }
