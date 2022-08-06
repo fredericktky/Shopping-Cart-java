@@ -1,12 +1,11 @@
-import java.lang.reflect.Array;
 import java.util.Scanner; //input
 import java.util.ArrayList; //array
 
 
 public class main {
-    static ArrayList<String> itemsList = new ArrayList<>();
-    static ArrayList<Double> itemsPrice = new ArrayList<>();
-    static ArrayList<Integer> itemsQuantity = new ArrayList<>();
+    static ArrayList<String> itemsList;
+    static ArrayList<Double> itemsPrice;
+    static ArrayList<Integer> itemsQuantity;
     static double price;
     public static void main (String[] args) {
         Scanner scanner= new Scanner(System.in);
@@ -15,7 +14,6 @@ public class main {
         double GST = 3;
         int x = 0;
 
-        boolean promo;
         String promoCode= "P10";
         double promoDiscount= 10.0;
 
@@ -38,6 +36,7 @@ public class main {
             if (Newitem.equals("y")){
                 System.out.println("Input name");
                 String itemname = scanner.next();
+
                 if (itemname.equals(item1)) {
                     addcart(item1,priceitem1);
                 }
@@ -57,28 +56,19 @@ public class main {
                 int quantity = scanner.nextInt();
                 itemsQuantity.add(quantity);
 
+
                 double totalItemPrice= price*quantity; //Calculate total item price
                 totalCost= totalCost+totalItemPrice;
                 System.out.println ("Item: " + itemname
                         + "\nQuantity : "+quantity
                         + "\nTotalPrice:" + totalItemPrice );}
 
-            else if (Newitem.equals("n")){
-                System.out.println("Promo code:");
-                String inputPromocode= scanner.next();
-                if (inputPromocode.equals(promoCode)){
-                    promo=true;
-                    System.out.println("Promo code valid");
-                }
-                else{
-                    promo=false;
-                }
 
-                System.out.println("SHOPPING CART SUMMARY"+
-                        "\nItem bought:" +itemsList+
-                        "\nItem price:RM"+itemsPrice+
-                        "\nItem Quantity:"+itemsQuantity);
-                if(promo) {
+            else if (Newitem.equals("n")){
+                Boolean validPromo =validPromo(scanner, promoCode);
+                printCart();
+
+                if(validPromo) {
                     double priceDeducted = totalCost * promoDiscount / 100;
                     System.out.println("Discount: RM" + priceDeducted);
                 }
@@ -94,9 +84,35 @@ public class main {
                 System.out.println("Please enter valid selection");}
         }
     }
+
+
     public static void addcart(String itemname, double itemprice){
         itemsList.add(itemname);
         itemsPrice.add(itemprice);
         price = itemprice;
+    }
+
+
+    public static Boolean validPromo(Scanner scanner, String promoCode) {
+        System.out.println("Promo code:");
+        String inputPromoCode= scanner.next();
+        Boolean validPromo;
+        if (inputPromoCode.equals(promoCode)){
+            validPromo=true;
+            System.out.println("Promo code valid");
+        }
+        else{
+            validPromo=false;
+        }
+        return validPromo;
+    }
+
+
+    public static void printCart(){
+        System.out.println("SHOPPING CART SUMMARY"+
+                "\nItem bought:" +itemsList+
+                "\nItem price:RM"+itemsPrice+
+                "\nItem Quantity:"+itemsQuantity);
+
     }
 }
