@@ -30,11 +30,9 @@ public class main {
         Welcome();
 
         boolean newItem = true;
-        int itemsListIndex = 0;
-        int itemsListMaxIndex = itemsList.size();
         double GST = 3;
         String promoCode= "P10";
-        double promoDiscount= 10.0;
+        double promoDiscountPerc= 10.0;
 
 
         while (newItem) {
@@ -47,13 +45,15 @@ public class main {
             }
             else if (userReply.equals("n")) {
                 newItem = false;
+                double discountAmmount =promoDiscount(validPromo(scanner, promoCode), promoDiscountPerc);
                 printCart();
                 double totalPrice = calculateTotalPrice();
                 System.out.println("Total Price: RM"+ totalPrice);
                 double GSTcost= addGST(GST);
-                System.out.println("GST: RM" + GSTcost);
-                double totalPriceWithGST= totalPrice+GSTcost;
-                System.out.println("Total Price with GST: RM" + totalPriceWithGST);
+                System.out.println("GST: RM" + GSTcost +
+                        "\nDiscount: RM"+ discountAmmount);
+                double totalPriceWithGST= totalPrice+GSTcost-discountAmmount;
+                System.out.println("Total pay: RM" + totalPriceWithGST);
 
             } else {
                 System.out.println("Please Input Correct Selection");
@@ -64,11 +64,9 @@ public class main {
     public static void Welcome() {
         System.out.println("Welcome to Shopping Mall XX");
         System.out.println("Item sold here:");
-        int itemsListIndex = 0;
         int itemsListMaxIndex = itemsList.size();
-        while (itemsListIndex < itemsListMaxIndex) {
+        for (int itemsListIndex = 0;itemsListIndex < itemsListMaxIndex; itemsListIndex+=1){
             System.out.println(itemsListIndex +"  "+ itemsList.get(itemsListIndex) + ":    RM" + itemsPrice.get(itemsListIndex));
-            itemsListIndex += 1;
         }
     }
     public static void addToCart(Scanner scanner , int itemsListIndex){
@@ -93,7 +91,7 @@ public class main {
                 "\nItem price:RM" + CartPrice +
                 "\nItem Quantity:" + CartQuantity);
     }
-    public static boolean promotion(Scanner scanner, String promoCode) {
+    public static boolean validPromo (Scanner scanner, String promoCode) {
         System.out.println("Promo code:");
         String inputPromoCode= scanner.next();
         boolean validPromo;
@@ -105,6 +103,13 @@ public class main {
             validPromo=false;
         }
         return validPromo;
+    }
+    public static double promoDiscount (Boolean validPromo , double promoDiscountPerc) {
+        double promoDiscount=0;
+        if (validPromo) {
+            promoDiscount = calculateTotalPrice() * promoDiscountPerc / 100;
+        }
+        return promoDiscount;
     }
     public static double addGST (double GST){
         return calculateTotalPrice()*GST/100;
