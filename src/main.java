@@ -3,9 +3,9 @@ import java.util.ArrayList; //array
 
 
 public class main {
-    static ArrayList<String> itemsList;
-    static ArrayList<Double> itemsPrice;
-    static ArrayList<Integer> itemsQuantity;
+    static ArrayList<String> itemsList = new ArrayList<>();
+    static ArrayList<Double> itemsPrice = new ArrayList<>();
+    static ArrayList<Integer> itemsQuantity = new ArrayList<>();
     static double price;
     public static void main (String[] args) {
         Scanner scanner= new Scanner(System.in);
