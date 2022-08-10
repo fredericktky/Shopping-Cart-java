@@ -1,14 +1,15 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ShopItem {
     //think of this as entity
     //what item should have? name? price? quantity? or something?
 
-    String name;
-    double price;
-    int quantity;
+    private String name;
+    private double price;
+    private int quantity;
 
     //this constructor is to set the default value if you want to use this class.
     //means if you use this, u must have name, price and quantity
@@ -64,11 +65,17 @@ public class ShopItem {
     }
 
     public ArrayList<ShopItem> getAllStoreItems(){
-        return new ArrayList<ShopItem>(
-                new ShopItem(),
-                new ShopItem()
-        ) ;
+        //remember arraylist allows you to edit and delete the items, list cannot but if you
+        //have list.of in arraylist, these item can be edited!
+        return new ArrayList<ShopItem>( List.of(
+                new ShopItem("Kaya", 6.50, 12),
+                new ShopItem("Butter", 3.50, 25),
+                new ShopItem("Bun", 4.50, 25),
+                new ShopItem("Honey", 8.50, 25),
+                new ShopItem("Peanut", 13.50, 25)
+        ));
     }
 }
+
 
 
